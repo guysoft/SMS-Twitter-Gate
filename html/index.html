@@ -1,0 +1,127 @@
+<!--
+Copyright © 2011 Guy Sheffer <guysoft@gmail.com>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+Created on Mar 7, 2011
+
+@author: Guy Sheffer <guysoft@gmail.com>
+-->
+<html>
+<head>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+<script type="text/javascript" src="//www.google.com/jsapi"></script>
+
+<script type="text/javascript">
+
+
+function translateFinal(text){
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    alert("You are now redirected to twitter, which will give you a pin number, SMS that number to 052-563-5053 in order to active your gateway \n\n It is recommended you save the number 052-563-5053 to your cellphone, since you will be tweeting from it :) . ");
+    document.getElementById("output").innerHTML="<a href='" + xmlhttp.responseText + "' Redirected here for authriziation</a>";
+    self.location.href=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","http://YOURSERVER/cgi-bin/twitter_auth.py?phone=" + text,true);
+xmlhttp.send();
+}
+
+function getToken()
+{
+document.getElementById("output").innerHTML="<img src='bigrotation2.gif' alt='loading' />";//start loading animation
+var container = document.getElementById("transoutput");
+container.value="";
+
+translateFinal(document.form.phone.value);
+}
+
+</script>
+
+
+</head>
+<body>
+<center>
+<img src="SMS Twitter Gateway.png" alt="SMS Twitetr Gateway"/>
+<h2>Free Israeli SMS to Twitter Gateway</h2>
+<h4>Update your twitter status from your cellphone with SMS!</h4>
+</center>
+
+<div class="rbroundbox">
+	<div class="rbtop"><div></div></div>
+		<div class="rbcontent">
+<center><h2>Sign up! It's free and secure.</h2></center>
+<form NAME = form>
+Your phone number:<input type="text" name="phone" />
+<button type="button" onclick="getToken()" value="flymypretty">Go!</button>
+<h2>Operator number: 052-563-5053</h2>
+</form>
+
+
+
+
+
+<div id="output"></div>
+<form NAME = outputdata>
+<input type="hidden" id="transoutput" value="off"/>
+</form>
+		</div><!-- /rbcontent -->
+	<div class="rbbot"><div></div></div>
+</div><!-- /rbroundbox -->
+
+<div class="rbroundbox">
+	<div class="rbtop"><div></div></div>
+		<div class="rbcontent">
+<h2>How does it work?</h2></br>
+<ul>
+<li>Enter your phone number in the box above (For example 0512345678)</li>
+<li>Make sure you are logged in to twitter, you will be redirected to a page asking you to allow Gate-IL to work <img src="stage2.png" alt="stage2"/></li>
+<li>You will receive from twitter a pin number. SMS That pin number twitter gives you to <b>052-563-5053</b> (+97252-563-5053) <img src="stage3.png" alt="stage3"/></li>
+<li><b>Thats it!</b> To tweet, SMS send a message from now to 052-563-5053. Cost is of a normal SMS message!</li>
+</ul> 
+</form>
+		</div><!-- /rbcontent -->
+	<div class="rbbot"><div></div></div>
+</div><!-- /rbroundbox -->
+
+<br/>
+<div class="rbroundbox">
+	<div class="rbtop"><div></div></div>
+		<div class="rbcontent">
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical" data-via="guysoft">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<br/>
+
+
+Written and maintained by <a href="http://twitter.com/guysoft">YOU USER HERE</a>.
+		</div><!-- /rbcontent -->
+	<div class="rbbot"><div></div></div>
+</div><!-- /rbroundbox -->
+</body>
+</html>
+

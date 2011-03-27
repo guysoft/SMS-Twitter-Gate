@@ -1,0 +1,33 @@
+How to set up in a nutshell
+----------------------------
+
+1. apt-get install gammu-smsd
+(or your os equivelent of installing gammu sms deamon)
+
+2. Connect a phone that is set to modem mode to the server  (should show up recognised /dev/ttyACM0 or /dev/ttyACMx) 
+
+3. Configure gammu-smsd to work with your phone, the config file in Debian is at /etc/gammu-smsdrc . An example configuration is supplied in the source.
+Pay attention to the config line "RunOnReceive", This should point to the bash script that runs the SMS gate
+
+4. Set $PROGRAM in /path/to/gate_scripts/smsd.sh to point to the right path of /path/to/gate_scripts/twitter-smsd.py
+
+5. Set up a Twitter API key, make sure to select the client radio, not the browser
+
+6. Set your consumer_key, consumer_secret, DB_PATH, LOGPATH and COUNTRY_PREFIX in /path/to/gate_scripts/gate_config.py
+
+7. (optional) If you are running a small gate its recommended to uncomment shutil.copy(DB_PATH, DB_PATH +'.' + str(time.time())) inside twitter-smsd.py
+It might save you loosing all your DB if it craches
+
+8. Make sure the directory of the sqlite DB is writable! (both directory and file)
+
+9. Webserver scripts go at your cgi-bin folder in a python-capable apache server. Again, make sure they are executable. You need gate_config.py configured there too (you can copy the same one fron stage 6).
+
+10. Copy the html folder to an accecable point in your webserver
+
+11. Inside the "html/index.html" file set the path to your "cgi-bin/twitter_auth.py" (around line 28), also replace the number "052-563-5053" with your own Gate number
+
+12. You can use http://creatr.cc/creatr/ to create a logo with your own Gate name.
+
+13. Add your gate to the Twitter Gate list here: http://werebuild.eu/wiki/SMSGateNetwork
+
+14. Enjoy

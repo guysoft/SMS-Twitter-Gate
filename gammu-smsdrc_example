@@ -1,0 +1,24 @@
+# Configuration file for Gammu SMS Daemon
+
+# Gammu library configuration, see gammurc(5)
+[gammu]
+port = /dev/ttyACM0
+connection = at
+# Debugging
+logformat = textall
+
+# SMSD configuration, see gammu-smsdrc(5)
+[smsd]
+service = files
+logfile = smsd.log
+# Increase for debugging information
+debuglevel = 3
+
+# Paths where messages are stored
+inboxpath = /var/spool/gammu/inbox/
+outboxpath = /var/spool/gammu/outbox/
+sentsmspath = /var/spool/gammu/sent/
+errorsmspath = /var/spool/gammu/error/
+
+#RunOnReceive = /path/to/gate_scripts/twitter-smsd.py #does not work currently due to bug in Gammu-smsd
+RunOnReceive = /path/to/gate_scripts/smsd.sh
