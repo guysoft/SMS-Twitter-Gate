@@ -21,7 +21,8 @@
 
 #env > /tmp/envout #wonderful for debugging envirement stuff
 #echo $SMS_MESSAGES > /tmp/value
-PROGRAM=python /path/to/gate_scripts/twitter-smsd.py
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PROGRAM=python $DIR/twitter-smsd.py
 #for i in `seq $SMS_MESSAGES` ; do
      eval "$PROGRAM \"\${SMS_${i}_NUMBER}\" \"\${SMS_${i}_TEXT}\""
 #done
