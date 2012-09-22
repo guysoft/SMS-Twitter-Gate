@@ -11,6 +11,7 @@ logformat = textall
 [smsd]
 service = files
 logfile = smsd.log
+InboxFormat = detail
 # Increase for debugging information
 debuglevel = 3
 
